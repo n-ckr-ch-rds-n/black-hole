@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {NgForm} from "@angular/forms";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: "app-input",
@@ -16,6 +16,7 @@ export class InputComponent implements OnInit {
 
   onSubmit() {
     console.log(this.bandName);
+    console.log("ACCESS ID", environment.ACCESS_KEY_ID);
   }
 
 }
