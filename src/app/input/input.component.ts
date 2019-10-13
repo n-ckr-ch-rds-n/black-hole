@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import {environment} from "../../environments/environment";
+import {Component, OnInit} from "@angular/core";
+import {BandNameService} from "../band-name-service/band-name-service";
 
 @Component({
   selector: "app-input",
@@ -9,14 +9,13 @@ import {environment} from "../../environments/environment";
 export class InputComponent implements OnInit {
   bandName: string;
 
-  constructor() { }
+  constructor(private bandNameService: BandNameService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    console.log(this.bandName);
-    console.log("ACCESS ID", environment.ACCESS_KEY_ID);
+  async onSubmit(): Promise<void> {
+    await this.bandNameService.putBandName(this.bandName);
   }
 
 }
