@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { BackDropComponent } from './back-drop/back-drop.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BackDropComponent
   ],
   imports: [
     BrowserModule
