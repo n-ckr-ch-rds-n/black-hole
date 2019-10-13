@@ -24,7 +24,7 @@ export class BackDropComponent implements OnInit {
 
   plusOrMinusOne() {
     const index = Math.floor(Math.random() * Math.floor(2));
-    return [-1, 1][index];
+    return [-5, 5][index];
   }
 
   ngOnInit() {
