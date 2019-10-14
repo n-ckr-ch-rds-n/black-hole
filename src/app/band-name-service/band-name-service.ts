@@ -1,5 +1,5 @@
 import * as AWS from "aws-sdk";
-import uuidv1 from "uuid/v1";
+import * as uuidv1 from "uuid/v1";
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import PutItemInput = DocumentClient.PutItemInput;
 import {environment} from "../../environments/environment";
