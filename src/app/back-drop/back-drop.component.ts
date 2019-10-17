@@ -32,7 +32,7 @@ export class BackDropComponent implements OnInit {
     setInterval(() => {
       this.rgbValues = this.setColourValues(this.rgbValues);
       this.rgbString = `rgb(${this.rgbValues[0]}, ${this.rgbValues[1]}, ${this.rgbValues[2]})`;
-      }, 100);
+      }, 1);
   }
 
 }
