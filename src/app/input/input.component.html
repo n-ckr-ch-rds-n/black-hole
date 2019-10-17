@@ -1,6 +1,6 @@
-<form>
+<form class="input-container">
   <mat-form-field>
     <input matInput [style.color]="'white'" [(ngModel)]="bandName" [ngModelOptions]="{standalone: true}">
   </mat-form-field>
-  <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+  <button class="submit-button" type="submit" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
 </form>
