@@ -12,8 +12,8 @@ export class BandNameService {
   constructor() {
     const devConfig = {region: "us-east-1"};
     const prodConfig = {...devConfig,
-      accessKeyId: environment.ACCESS_KEY_ID,
-      secretAccessKey: environment.SECRET_ACCESS_KEY};
+      accessKeyId: process.env.ACCESS_KEY_ID,
+      secretAccessKey: process.env.SECRET_ACCESS_KEY};
     const config = environment.production ? prodConfig : devConfig;
     AWS.config.update(config);
     this.client = new AWS.DynamoDB.DocumentClient();
