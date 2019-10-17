@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  SECRET_ACCESS_KEY: "foobar",
-  ACCESS_KEY_ID: "barbaz"
+  awsRegion: 'us-east-1',
+  identityPoolId: 'us-east-1:54efc993-0bcc-4bda-85fe-79d1126c1566',
+  tableName: 'band-names',
 };
 
 /*

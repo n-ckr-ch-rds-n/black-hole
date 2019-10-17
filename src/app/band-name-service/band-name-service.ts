@@ -10,16 +10,16 @@ export class BandNameService {
   client: DocumentClient;
 
   constructor() {
-    AWS.config.region = 'us-east-1';
+    AWS.config.region = environment.awsRegion;
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'us-east-1:54efc993-0bcc-4bda-85fe-79d1126c1566'
+      IdentityPoolId: environment.identityPoolId
     });
     this.client = new AWS.DynamoDB.DocumentClient();
   }
 
   toParams(name: string): PutItemInput {
     return {
-      TableName: 'band-names',
+      TableName: environment.tableName,
       Item: {
         'id': uuidv1(),
         'name': name
