@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BandNameService} from '../band-name-service/band-name-service';
 
 @Component({
   selector: 'app-lister',
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class ListerComponent implements OnInit {
 
   bandNames = ['mad', 'cool', 'painshark'];
+  bandNamePromise: Promise<string[]>;
 
-  constructor() { }
+  constructor(private bandNameService: BandNameService) { }
 
   ngOnInit() {
+    this.bandNamePromise = this.bandNameService.listBandNames();
   }
 
 }
