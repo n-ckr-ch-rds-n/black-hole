@@ -7,12 +7,14 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {BandNameService} from "./band-name-service/band-name-service";
+import { VoterComponent } from './voter/voter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BackDropComponent,
-    InputComponent
+    InputComponent,
+    VoterComponent
   ],
   imports: [
     BrowserModule,
