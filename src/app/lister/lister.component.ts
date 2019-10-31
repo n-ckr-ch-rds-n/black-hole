@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListerComponent implements OnInit {
 
+  bandNames = ['mad', 'cool', 'painshark'];
+
   constructor() { }
 
   ngOnInit() {
