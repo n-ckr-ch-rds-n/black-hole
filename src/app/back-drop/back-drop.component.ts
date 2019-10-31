@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import {environment} from '../../environments/environment';
 
 @Component({
-  selector: "app-back-drop",
-  templateUrl: "./back-drop.component.html",
-  styleUrls: ["./back-drop.component.scss"]
+  selector: 'app-back-drop',
+  templateUrl: './back-drop.component.html',
+  styleUrls: ['./back-drop.component.scss']
 })
 export class BackDropComponent implements OnInit {
+  environment = environment;
 
   rgbValues: number[];
   rgbString: string;
