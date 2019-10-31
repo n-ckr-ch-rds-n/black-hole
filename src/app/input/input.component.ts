@@ -14,6 +14,7 @@ export class InputComponent implements OnInit {
               private snackbar: MatSnackBar) { }
 
   ngOnInit() {
+    const items = this.bandNameService.listBandNames();
   }
 
   async onSubmit(): Promise<void> {

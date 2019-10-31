@@ -30,4 +30,8 @@ export class BandNameService {
   async putBandName(name: string): Promise<void> {
     await this.client.put(this.toParams(name)).promise();
   }
+
+  listBandNames(): string[] {
+    return ['poo'];
+  }
 }
