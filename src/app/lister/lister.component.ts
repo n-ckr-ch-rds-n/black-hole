@@ -9,12 +9,13 @@ export class ListerComponent implements OnInit {
   @Input()
   bandNames: string[];
 
-  ratableNames: Array<{name: string, rating: number}>;
+  ratableNames: Array<{name: string, rating: number, src: string}>;
 
   constructor() { }
 
   ngOnInit() {
-    this.ratableNames = this.bandNames.map(bandName => ({name: bandName, rating: 0}));
+    this.ratableNames = this.bandNames.map(bandName => ({name: bandName,
+      rating: 0, src: `https://picsum.photos/900/500?random&t=${Math.random()}`}));
   }
 
 }
