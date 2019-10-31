@@ -1,5 +1,5 @@
 import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
+import {NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {BackDropComponent} from "./back-drop/back-drop.component";
 import {InputComponent} from "./input/input.component";
@@ -8,13 +8,16 @@ import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatS
 import {FormsModule} from "@angular/forms";
 import {BandNameService} from "./band-name-service/band-name-service";
 import { VoterComponent } from './voter/voter.component';
+import { ListerComponent } from './lister/lister.component';
+import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
     AppComponent,
     BackDropComponent,
     InputComponent,
-    VoterComponent
+    VoterComponent,
+    ListerComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +28,13 @@ import { VoterComponent } from './voter/voter.component';
     MatSnackBarModule,
     FormsModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CarouselModule.forRoot(),
+    WavesModule.forRoot()
   ],
   providers: [BandNameService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ NO_ERRORS_SCHEMA ]
+
 })
 export class AppModule { }
