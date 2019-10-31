@@ -1,13 +1,13 @@
 <mdb-carousel [animation]="'slide'" [noWrap]="true">
-  <ng-container *ngFor="let name of bandNamePromise | async">
+  <ng-container *ngFor="let name of ratableNames">
     <mdb-carousel-item>
       <div class="view w-100">
         <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
         <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">{{name}}</h3>
-        <app-voter></app-voter>
+        <h3 class="h3-responsive">{{name.name}}</h3>
+        <app-voter [bandName]="name"></app-voter>
       </div>
     </mdb-carousel-item>
   </ng-container>

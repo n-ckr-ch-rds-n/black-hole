@@ -1,4 +1,6 @@
 <div class="back-drop" [style.background-color]="rgbString">
   <app-input *ngIf="environment.production"></app-input>
-  <app-lister></app-lister>
+  <ng-container *ngIf="bandNamePromise | async as bandNames">
+    <app-lister [bandNames]="bandNames"></app-lister>
+  </ng-container>
 </div>

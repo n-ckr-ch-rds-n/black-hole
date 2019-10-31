@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from '../../environments/environment';
+import {BandNameService} from '../band-name-service/band-name-service';
 
 @Component({
   selector: 'app-back-drop',
@@ -8,11 +9,12 @@ import {environment} from '../../environments/environment';
 })
 export class BackDropComponent implements OnInit {
   environment = environment;
+  bandNamePromise: Promise<string[]>;
 
   rgbValues: number[];
   rgbString: string;
 
-  constructor() {}
+  constructor(private bandNameService: BandNameService) {}
 
   setColourValues(values: number[]): number[] {
     return values.map(colour => {
@@ -30,6 +32,7 @@ export class BackDropComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.bandNamePromise = this.bandNameService.listBandNames();
     this.rgbValues = [0, 0, 0];
     setInterval(() => {
       this.rgbValues = this.setColourValues(this.rgbValues);

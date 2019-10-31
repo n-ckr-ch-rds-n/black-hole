@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {BandNameService} from '../band-name-service/band-name-service';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-lister',
@@ -7,14 +6,15 @@ import {BandNameService} from '../band-name-service/band-name-service';
   styleUrls: ['./lister.component.scss']
 })
 export class ListerComponent implements OnInit {
+  @Input()
+  bandNames: string[];
 
-  bandNames = ['mad', 'cool', 'painshark'];
-  bandNamePromise: Promise<string[]>;
+  ratableNames: Array<{name: string, rating: number}>;
 
-  constructor(private bandNameService: BandNameService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.bandNamePromise = this.bandNameService.listBandNames();
+    this.ratableNames = this.bandNames.map(bandName => ({name: bandName, rating: 0}));
   }
 
 }
