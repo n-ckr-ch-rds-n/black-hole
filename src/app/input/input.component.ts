@@ -13,8 +13,7 @@ export class InputComponent implements OnInit {
   constructor(private bandNameService: BandNameService,
               private snackbar: MatSnackBar) { }
 
-  ngOnInit() {
-    const items = this.bandNameService.listBandNames();
+  async ngOnInit() {
   }
 
   async onSubmit(): Promise<void> {

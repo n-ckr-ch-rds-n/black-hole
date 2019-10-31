@@ -31,7 +31,9 @@ export class BandNameService {
     await this.client.put(this.toParams(name)).promise();
   }
 
-  listBandNames(): string[] {
-    return ['poo'];
+  async listBandNames(): Promise<any> {
+    const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
+    const namesList = scanResult.Items.map(item => item.name);
+    return namesList.filter((name, index) => index === namesList.indexOf(name));
   }
 }
