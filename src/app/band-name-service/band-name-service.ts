@@ -31,9 +31,13 @@ export class BandNameService {
     await this.client.put(this.toParams(name)).promise();
   }
 
-  async listBandNames(): Promise<any> {
-    const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
-    const namesList = scanResult.Items.map(item => item.name);
-    return namesList.filter((name, index) => index === namesList.indexOf(name));
+  async listBandNames(): Promise<string[]> {
+    if (environment.production) {
+      return [];
+    } else {
+      const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
+      const namesList = scanResult.Items.map(item => item.name);
+      return namesList.filter((name, index) => index === namesList.indexOf(name));
+    }
   }
 }
