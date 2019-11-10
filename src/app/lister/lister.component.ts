@@ -6,7 +6,7 @@ import {MatDialog, MatSnackBar} from "@angular/material";
 import {RatableName} from "../ratable.name";
 import {Router} from "@angular/router";
 import {ConfirmVoteComponent} from "../confirm-vote/confirm-vote.component";
-import {sleep} from '../utils';
+import {sleep} from "../utils";
 
 @Component({
   selector: "app-lister",
