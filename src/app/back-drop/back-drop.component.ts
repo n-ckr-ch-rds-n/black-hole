@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {environment} from '../../environments/environment';
-import {BandNameService} from '../band-name-service/band-name-service';
+import { Component, OnInit } from "@angular/core";
+import {environment} from "../../environments/environment";
+import {BandNameService} from "../band-name-service/band-name-service";
+import {BandNameEntry} from "../band.name.entry";
 
 @Component({
-  selector: 'app-back-drop',
-  templateUrl: './back-drop.component.html',
-  styleUrls: ['./back-drop.component.scss']
+  selector: "app-back-drop",
+  templateUrl: "./back-drop.component.html",
+  styleUrls: ["./back-drop.component.scss"]
 })
 export class BackDropComponent implements OnInit {
   environment = environment;
-  bandNamePromise: Promise<string[]>;
+  bandNamePromise: Promise<BandNameEntry[]>;
 
   rgbValues: number[];
   rgbString: string;

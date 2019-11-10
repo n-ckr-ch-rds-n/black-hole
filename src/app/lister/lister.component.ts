@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
+import {BandNameEntry} from "../band.name.entry";
 
 @Component({
   selector: "app-lister",
@@ -7,21 +8,28 @@ import {Component, Input, OnInit} from "@angular/core";
 })
 export class ListerComponent implements OnInit {
   @Input()
-  bandNames: string[];
+  bandNames: BandNameEntry[];
 
-  ratableNames: Array<{name: string, rating: number, src: string}>;
+  ratableNames: Array<{name: string, id: string, rating: number, src: string}>;
 
   constructor() { }
 
   ngOnInit() {
     this.ratableNames = this.bandNames.map(bandName => ({
-      name: bandName,
-      rating: 0,
+      id: bandName.id,
+      name: bandName.name,
+      rating: bandName.rating,
       src: `https://picsum.photos/900/500?random&t=${Math.random()}`}));
   }
 
   vote() {
     console.log(this.ratableNames);
+    for (const name of this.ratableNames) {
+      // get the item from the db
+      // check if it already has a rating
+      // add it to the current rating or replace undefined
+      // update db item with rating
+    }
   }
 
 }

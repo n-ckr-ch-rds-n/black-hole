@@ -4,6 +4,7 @@ import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import PutItemInput = DocumentClient.PutItemInput;
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
+import {BandNameEntry} from '../band.name.entry';
 
 @Injectable()
 export class BandNameService {
@@ -31,9 +32,9 @@ export class BandNameService {
     await this.client.put(this.toParams(name)).promise();
   }
 
-  async listBandNames(): Promise<any[]> {
+  async listBandNames(): Promise<BandNameEntry[]> {
     const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
-    const dbList = scanResult.Items;
+    const dbList = scanResult.Items as BandNameEntry[];
     return dbList
       .filter((entry, index) => index === dbList.indexOf(dbList
         .find(dbListItem => dbListItem.name === entry.name)));
