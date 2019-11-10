@@ -32,6 +32,11 @@ export class BandNameService {
     await this.client.put(this.toParams(name)).promise();
   }
 
+  async getBandNameById(id: string) {
+    const entry = await this.client.get({TableName: environment.tableName, Key: {id}}).promise();
+    return entry.Item;
+  }
+
   async listBandNames(): Promise<BandNameEntry[]> {
     const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
     const dbList = scanResult.Items as BandNameEntry[];

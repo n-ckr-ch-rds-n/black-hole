@@ -23,10 +23,10 @@ export class ListerComponent implements OnInit {
       src: `https://picsum.photos/900/500?random&t=${Math.random()}`}));
   }
 
-  vote() {
-    console.log(this.ratableNames);
+  async vote() {
     for (const name of this.ratableNames) {
-      // get the item from the db
+      const dbEntry = await this.bandNameService.getBandNameById(name.id);
+      console.log(dbEntry);
       // check if it already has a rating
       // add it to the current rating or replace undefined
       // update db item with rating
