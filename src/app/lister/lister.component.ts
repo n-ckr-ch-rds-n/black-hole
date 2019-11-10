@@ -6,6 +6,7 @@ import {MatDialog, MatSnackBar} from "@angular/material";
 import {RatableName} from "../ratable.name";
 import {Router} from "@angular/router";
 import {ConfirmVoteComponent} from "../confirm-vote/confirm-vote.component";
+import {sleep} from '../utils';
 
 @Component({
   selector: "app-lister",
@@ -57,6 +58,7 @@ export class ListerComponent implements OnInit {
   }
 
   async vote() {
+    this.saving = true;
     if (this.voterService.user.name === "Admin") {
       this.snackBar.open(`Apols you can't vote, ${this.voterService.user.name}`, "Ok");
     } else if (this.voterService.user.voted) {
@@ -68,6 +70,7 @@ export class ListerComponent implements OnInit {
       this.voterService.logout();
       await this.router.navigate(["login"]);
     }
+    this.saving = false;
   }
 
 }
