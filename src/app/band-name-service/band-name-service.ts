@@ -4,7 +4,7 @@ import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import PutItemInput = DocumentClient.PutItemInput;
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
-import {BandNameEntry} from '../band.name.entry';
+import {BandNameEntry} from "../band.name.entry";
 
 @Injectable()
 export class BandNameService {
