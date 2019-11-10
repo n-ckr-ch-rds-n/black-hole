@@ -3,6 +3,8 @@ import {BandNameEntry} from "../band.name.entry";
 import {BandNameService} from "../band-name-service/band-name-service";
 import {VoterService} from "../voter-service/voter-service";
 import {MatSnackBar} from "@angular/material";
+import {RatableName} from "../ratable.name";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "app-lister",
@@ -13,11 +15,12 @@ export class ListerComponent implements OnInit {
   @Input()
   bandNames: BandNameEntry[];
 
-  ratableNames: Array<{name: string, id: string, rating: number, src: string}>;
+  ratableNames: RatableName[];
 
   constructor(private bandNameService: BandNameService,
               private voterService: VoterService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit() {
     this.ratableNames = this.bandNames.map(bandName => ({
@@ -35,11 +38,19 @@ export class ListerComponent implements OnInit {
     }
   }
 
+  async updateVoter(): Promise<void> {
+    await this.voterService.updateVoter(this.ratableNames);
+  }
+
   async vote() {
     if (this.voterService.user.voted) {
-      this.snackBar.open(`Apols ${this.voterService.user}, you have already voted`);
+      this.snackBar.open(`Apols ${this.voterService.user.name}, you have already voted`, "Ok");
     } else {
       await this.recordVote();
+      await this.updateVoter();
+      this.snackBar.open(`Thanks for voting, ${this.voterService.user.name}`, "Ok");
+      this.voterService.logout();
+      await this.router.navigate(["login"]);
     }
   }
 
