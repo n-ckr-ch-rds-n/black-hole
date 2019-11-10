@@ -32,9 +32,9 @@ export class BandNameService {
     await this.client.put(this.toParams(name)).promise();
   }
 
-  async getBandNameById(id: string) {
+  async getBandNameById(id: string): Promise<BandNameEntry> {
     const entry = await this.client.get({TableName: environment.tableName, Key: {id}}).promise();
-    return entry.Item;
+    return entry.Item as BandNameEntry;
   }
 
   async listBandNames(): Promise<BandNameEntry[]> {

@@ -24,9 +24,10 @@ export class ListerComponent implements OnInit {
   }
 
   async vote() {
-    for (const name of this.ratableNames) {
+    for (const name of this.ratableNames.slice(0, 3)) {
       const dbEntry = await this.bandNameService.getBandNameById(name.id);
-      console.log(dbEntry);
+      const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
+      console.log("Rating", rating);
       // check if it already has a rating
       // add it to the current rating or replace undefined
       // update db item with rating
