@@ -4,7 +4,15 @@ import {AppComponent} from "./app.component";
 import {BackDropComponent} from "./back-drop/back-drop.component";
 import {InputComponent} from "./input/input.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule, MatTooltipModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSnackBarModule,
+  MatTooltipModule
+} from '@angular/material';
 import {FormsModule} from "@angular/forms";
 import {BandNameService} from "./band-name-service/band-name-service";
 import { VoterComponent } from "./voter/voter.component";
@@ -13,6 +21,7 @@ import { CarouselModule, WavesModule } from "angular-bootstrap-md";
 import { LoginComponent } from "./login/login.component";
 import {VoterService} from "./voter-service/voter-service";
 import {RouterModule, Routes} from "@angular/router";
+import { ConfirmVoteComponent } from './confirm-vote/confirm-vote.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
@@ -26,7 +35,8 @@ const routes: Routes = [
     InputComponent,
     VoterComponent,
     ListerComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmVoteComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -40,8 +50,10 @@ const routes: Routes = [
     MatIconModule,
     MatTooltipModule,
     CarouselModule.forRoot(),
-    WavesModule.forRoot()
+    WavesModule.forRoot(),
+    MatDialogModule
   ],
+  entryComponents: [ConfirmVoteComponent],
   providers: [BandNameService, VoterService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]

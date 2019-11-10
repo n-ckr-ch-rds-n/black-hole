@@ -2,9 +2,10 @@ import {Component, Input, OnInit} from "@angular/core";
 import {BandNameEntry} from "../band.name.entry";
 import {BandNameService} from "../band-name-service/band-name-service";
 import {VoterService} from "../voter-service/voter-service";
-import {MatSnackBar} from "@angular/material";
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {RatableName} from "../ratable.name";
 import {Router} from "@angular/router";
+import {ConfirmVoteComponent} from '../confirm-vote/confirm-vote.component';
 
 @Component({
   selector: "app-lister",
@@ -20,7 +21,8 @@ export class ListerComponent implements OnInit {
   constructor(private bandNameService: BandNameService,
               private voterService: VoterService,
               private snackBar: MatSnackBar,
-              private router: Router) { }
+              private router: Router,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.ratableNames = this.bandNames.map(bandName => ({
@@ -28,6 +30,15 @@ export class ListerComponent implements OnInit {
       name: bandName.name,
       rating: 0,
       src: `https://picsum.photos/900/500?random&t=${Math.random()}`}));
+  }
+
+  confirm() {
+    const ref = this.dialog.open(ConfirmVoteComponent);
+    ref.afterClosed().subscribe(async result => {
+      if (result) {
+        await this.vote();
+      }
+    });
   }
 
   async recordVote(): Promise<void> {

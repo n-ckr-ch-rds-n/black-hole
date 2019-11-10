@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Hi {{voterService.user.name}}</h1>
+<div mat-dialog-content>
+  <p>Are you sure you have weighed each and every name with due consideration? The consequences of confirming your vote are irrevocable!</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="accent" (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Vote</button>
+</div>
