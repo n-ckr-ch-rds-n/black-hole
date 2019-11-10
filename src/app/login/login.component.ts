@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import {MatSnackBar} from "@angular/material";
+import {VoterService} from "../voter-service/voter-service";
 
 @Component({
   selector: "app-login",
@@ -9,13 +11,14 @@ export class LoginComponent implements OnInit {
 
   accessCode: string;
 
-  constructor() { }
+  constructor(private snackbar: MatSnackBar,
+              private voterService: VoterService) { }
 
   ngOnInit() {
   }
 
   login() {
-    console.log(this.accessCode);
+    const userValid = this.voterService.setUser(this.accessCode);
   }
 
 }

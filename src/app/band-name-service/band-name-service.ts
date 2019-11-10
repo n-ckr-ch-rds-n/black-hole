@@ -20,7 +20,7 @@ export class BandNameService {
 
   toParams(name: string): PutItemInput {
     return {
-      TableName: environment.tableName,
+      TableName: environment.bandNameTableName,
       Item: {
         "id": uuidv1(),
         "name": name
@@ -33,13 +33,13 @@ export class BandNameService {
   }
 
   async getBandNameById(id: string): Promise<BandNameEntry> {
-    const entry = await this.client.get({TableName: environment.tableName, Key: {id}}).promise();
+    const entry = await this.client.get({TableName: environment.bandNameTableName, Key: {id}}).promise();
     return entry.Item as BandNameEntry;
   }
 
   async updateEntryWithRating(id: string, rating: number): Promise<void> {
     await this.client.update({
-      TableName: environment.tableName,
+      TableName: environment.bandNameTableName,
       Key: {id},
       UpdateExpression: "SET rating = :r",
       ExpressionAttributeValues: {":r": rating}
@@ -47,7 +47,7 @@ export class BandNameService {
   }
 
   async listBandNames(): Promise<BandNameEntry[]> {
-    const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
+    const scanResult = await this.client.scan({TableName: environment.bandNameTableName}).promise();
     const dbList = scanResult.Items as BandNameEntry[];
     return dbList
       .filter((entry, index) => index === dbList.indexOf(dbList
