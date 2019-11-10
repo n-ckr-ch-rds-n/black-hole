@@ -1,9 +1,9 @@
-import * as AWS from 'aws-sdk';
-import * as uuidv1 from 'uuid/v1';
-import {DocumentClient} from 'aws-sdk/lib/dynamodb/document_client';
+import * as AWS from "aws-sdk";
+import * as uuidv1 from "uuid/v1";
+import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import PutItemInput = DocumentClient.PutItemInput;
-import {environment} from '../../environments/environment';
-import {Injectable} from '@angular/core';
+import {environment} from "../../environments/environment";
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class BandNameService {
@@ -21,8 +21,8 @@ export class BandNameService {
     return {
       TableName: environment.tableName,
       Item: {
-        'id': uuidv1(),
-        'name': name
+        "id": uuidv1(),
+        "name": name
       }
     };
   }
@@ -31,13 +31,11 @@ export class BandNameService {
     await this.client.put(this.toParams(name)).promise();
   }
 
-  async listBandNames(): Promise<string[]> {
-    if (environment.production) {
-      return [];
-    } else {
-      const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
-      const namesList = scanResult.Items.map(item => item.name);
-      return namesList.filter((name, index) => index === namesList.indexOf(name));
-    }
+  async listBandNames(): Promise<any[]> {
+    const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
+    const dbList = scanResult.Items;
+    return dbList
+      .filter((entry, index) => index === dbList.indexOf(dbList
+        .find(dbListItem => dbListItem.name === entry.name)));
   }
 }
