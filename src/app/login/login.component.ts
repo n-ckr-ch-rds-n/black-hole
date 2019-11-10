@@ -17,8 +17,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    const userValid = this.voterService.setUser(this.accessCode);
+  async login() {
+     try {
+       await this.voterService.setUser(this.accessCode);
+       this.snackbar.open(`Welcome ${this.voterService.user.name}`, "Ok");
+     } catch (err) {
+       this.snackbar.open(`Apols you don't exist ${this.accessCode}`, "Ok");
+     }
   }
 
 }

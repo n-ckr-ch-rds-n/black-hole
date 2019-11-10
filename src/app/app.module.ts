@@ -7,10 +7,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule, MatTooltipModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {BandNameService} from "./band-name-service/band-name-service";
-import { VoterComponent } from './voter/voter.component';
-import { ListerComponent } from './lister/lister.component';
-import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
-import { LoginComponent } from './login/login.component';
+import { VoterComponent } from "./voter/voter.component";
+import { ListerComponent } from "./lister/lister.component";
+import { CarouselModule, WavesModule } from "angular-bootstrap-md";
+import { LoginComponent } from "./login/login.component";
+import {VoterService} from "./voter-service/voter-service";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { LoginComponent } from './login/login.component';
     CarouselModule.forRoot(),
     WavesModule.forRoot()
   ],
-  providers: [BandNameService],
+  providers: [BandNameService, VoterService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 
