@@ -9,7 +9,7 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatProgressBarModule,
   MatSnackBarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -51,7 +51,8 @@ const routes: Routes = [
     MatTooltipModule,
     CarouselModule.forRoot(),
     WavesModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
   entryComponents: [ConfirmVoteComponent],
   providers: [BandNameService, VoterService],

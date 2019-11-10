@@ -1,3 +1,4 @@
+<mat-progress-bar *ngIf="saving" mode="indeterminate" value="40"></mat-progress-bar>
 <mdb-carousel [animation]="'slide'" [noWrap]="true" [interval]="false">
   <ng-container *ngFor="let name of ratableNames">
     <mdb-carousel-item>
@@ -13,5 +14,5 @@
   </ng-container>
 </mdb-carousel>
 <div class="button-container">
-  <button class="submit-button" type="submit" mat-raised-button color="warn" (click)="confirm()">Vote</button>
+  <button *ngIf="!saving" class="submit-button" type="submit" mat-raised-button color="warn" (click)="confirm()">Vote</button>
 </div>

@@ -2,10 +2,10 @@ import {Component, Input, OnInit} from "@angular/core";
 import {BandNameEntry} from "../band.name.entry";
 import {BandNameService} from "../band-name-service/band-name-service";
 import {VoterService} from "../voter-service/voter-service";
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {RatableName} from "../ratable.name";
 import {Router} from "@angular/router";
-import {ConfirmVoteComponent} from '../confirm-vote/confirm-vote.component';
+import {ConfirmVoteComponent} from "../confirm-vote/confirm-vote.component";
 
 @Component({
   selector: "app-lister",
@@ -18,6 +18,8 @@ export class ListerComponent implements OnInit {
 
   ratableNames: RatableName[];
 
+  saving: boolean;
+
   constructor(private bandNameService: BandNameService,
               private voterService: VoterService,
               private snackBar: MatSnackBar,
@@ -25,6 +27,7 @@ export class ListerComponent implements OnInit {
               public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.saving = false;
     this.ratableNames = this.bandNames.map(bandName => ({
       id: bandName.id,
       name: bandName.name,
