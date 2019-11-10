@@ -19,7 +19,7 @@ export class ListerComponent implements OnInit {
     this.ratableNames = this.bandNames.map(bandName => ({
       id: bandName.id,
       name: bandName.name,
-      rating: bandName.rating,
+      rating: 0,
       src: `https://picsum.photos/900/500?random&t=${Math.random()}`}));
   }
 
@@ -27,9 +27,6 @@ export class ListerComponent implements OnInit {
     for (const name of this.ratableNames.slice(0, 3)) {
       const dbEntry = await this.bandNameService.getBandNameById(name.id);
       const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
-      console.log("Rating", rating);
-      // check if it already has a rating
-      // add it to the current rating or replace undefined
       // update db item with rating
     }
   }
