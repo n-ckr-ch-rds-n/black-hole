@@ -12,6 +12,12 @@ import { ListerComponent } from "./lister/lister.component";
 import { CarouselModule, WavesModule } from "angular-bootstrap-md";
 import { LoginComponent } from "./login/login.component";
 import {VoterService} from "./voter-service/voter-service";
+import {RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [
+  {path: "login", component: LoginComponent},
+  {path: "vote", component: BackDropComponent}
+];
 
 @NgModule({
   declarations: [
@@ -23,6 +29,7 @@ import {VoterService} from "./voter-service/voter-service";
     LoginComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
