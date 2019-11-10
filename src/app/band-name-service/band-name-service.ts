@@ -37,6 +37,15 @@ export class BandNameService {
     return entry.Item as BandNameEntry;
   }
 
+  async updateEntryWithRating(id: string, rating: number): Promise<void> {
+    await this.client.update({
+      TableName: environment.tableName,
+      Key: {id},
+      UpdateExpression: "SET rating = :r",
+      ExpressionAttributeValues: {":r": rating}
+    }).promise();
+  }
+
   async listBandNames(): Promise<BandNameEntry[]> {
     const scanResult = await this.client.scan({TableName: environment.tableName}).promise();
     const dbList = scanResult.Items as BandNameEntry[];

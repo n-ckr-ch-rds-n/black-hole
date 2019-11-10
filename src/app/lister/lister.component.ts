@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {BandNameEntry} from "../band.name.entry";
-import {BandNameService} from '../band-name-service/band-name-service';
+import {BandNameService} from "../band-name-service/band-name-service";
 
 @Component({
   selector: "app-lister",
@@ -27,7 +27,7 @@ export class ListerComponent implements OnInit {
     for (const name of this.ratableNames.slice(0, 3)) {
       const dbEntry = await this.bandNameService.getBandNameById(name.id);
       const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
-      // update db item with rating
+      await this.bandNameService.updateEntryWithRating(dbEntry.id, rating);
     }
   }
 
