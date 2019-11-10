@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {BandNameEntry} from "../band.name.entry";
 import {BandNameService} from "../band-name-service/band-name-service";
+import {VoterService} from "../voter-service/voter-service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: "app-lister",
@@ -13,7 +15,9 @@ export class ListerComponent implements OnInit {
 
   ratableNames: Array<{name: string, id: string, rating: number, src: string}>;
 
-  constructor(private bandNameService: BandNameService) { }
+  constructor(private bandNameService: BandNameService,
+              private voterService: VoterService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.ratableNames = this.bandNames.map(bandName => ({
@@ -24,10 +28,14 @@ export class ListerComponent implements OnInit {
   }
 
   async vote() {
-    for (const name of this.ratableNames.slice(0, 3)) {
-      const dbEntry = await this.bandNameService.getBandNameById(name.id);
-      const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
-      await this.bandNameService.updateEntryWithRating(dbEntry.id, rating);
+    if (this.voterService.user.voted) {
+      this.snackBar.open(`Apols ${this.voterService.user}, you have already voted`);
+    } else {
+      for (const name of this.ratableNames.slice(0, 1)) {
+        const dbEntry = await this.bandNameService.getBandNameById(name.id);
+        const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
+        await this.bandNameService.updateEntryWithRating(dbEntry.id, rating);
+      }
     }
   }
 

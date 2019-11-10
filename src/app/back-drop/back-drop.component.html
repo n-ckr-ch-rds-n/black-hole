@@ -1,4 +1,4 @@
-<div class="back-drop" [style.background-color]="'black'">
+<div class="back-drop" [style.background-color]="rgbString">
   <ng-container *ngIf="bandNamePromise | async as bandNames">
     <app-lister *ngIf="!environment.production" [bandNames]="bandNames"></app-lister>
   </ng-container>
