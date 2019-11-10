@@ -27,15 +27,19 @@ export class ListerComponent implements OnInit {
       src: `https://picsum.photos/900/500?random&t=${Math.random()}`}));
   }
 
+  async recordVote(): Promise<void> {
+    for (const name of this.ratableNames.slice(0, 1)) {
+      const dbEntry = await this.bandNameService.getBandNameById(name.id);
+      const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
+      await this.bandNameService.updateEntryWithRating(dbEntry.id, rating);
+    }
+  }
+
   async vote() {
     if (this.voterService.user.voted) {
       this.snackBar.open(`Apols ${this.voterService.user}, you have already voted`);
     } else {
-      for (const name of this.ratableNames.slice(0, 1)) {
-        const dbEntry = await this.bandNameService.getBandNameById(name.id);
-        const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
-        await this.bandNameService.updateEntryWithRating(dbEntry.id, rating);
-      }
+      await this.recordVote();
     }
   }
 
