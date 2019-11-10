@@ -14,3 +14,21 @@ button:focus, button:active:focus, button.active:focus {
 mdb-carousel .carousel-indicators {
   display: none;
 }
+
+.back-drop {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-button {
+  margin: 50px;
+}

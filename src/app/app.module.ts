@@ -10,6 +10,7 @@ import {BandNameService} from "./band-name-service/band-name-service";
 import { VoterComponent } from './voter/voter.component';
 import { ListerComponent } from './lister/lister.component';
 import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
     BackDropComponent,
     InputComponent,
     VoterComponent,
-    ListerComponent
+    ListerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {BandNameService} from '../band-name-service/band-name-service';
-import {MatSnackBar} from '@angular/material';
+import {Component, OnInit} from "@angular/core";
+import {BandNameService} from "../band-name-service/band-name-service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  selector: "app-input",
+  templateUrl: "./input.component.html",
+  styleUrls: ["./input.component.scss"]
 })
 export class InputComponent implements OnInit {
   bandName: string;
@@ -20,13 +20,13 @@ export class InputComponent implements OnInit {
     if (this.bandName.length && this.bandName.length > 0) {
       try {
         await this.bandNameService.putBandName(this.bandName);
-        this.snackbar.open(`${this.bandName} saved`, 'OK');
+        this.snackbar.open(`${this.bandName} saved`, "OK");
       } catch (err) {
-        this.snackbar.open(err.message, 'OK');
+        this.snackbar.open(err.message, "OK");
       }
-      this.bandName = '';
+      this.bandName = "";
     } else {
-      this.snackbar.open('That\'s not a band name!', 'OK');
+      this.snackbar.open("That's not a band name!", "OK");
     }
   }
 
