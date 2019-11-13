@@ -22,6 +22,7 @@ import { LoginComponent } from "./login/login.component";
 import {VoterService} from "./voter-service/voter-service";
 import {RouterModule, Routes} from "@angular/router";
 import { ConfirmVoteComponent } from './confirm-vote/confirm-vote.component';
+import { LeagueSortPipe } from './league-sort.pipe';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
     VoterComponent,
     ListerComponent,
     LoginComponent,
-    ConfirmVoteComponent
+    ConfirmVoteComponent,
+    LeagueSortPipe
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -1,5 +1,5 @@
-<mat-progress-bar *ngIf="saving" mode="indeterminate" value="40"></mat-progress-bar>
 <mdb-carousel [animation]="'slide'" [noWrap]="true" [interval]="false">
+  <mat-progress-bar *ngIf="saving" mode="indeterminate" value="40"></mat-progress-bar>
   <ng-container *ngFor="let name of ratableNames">
     <mdb-carousel-item>
       <div class="view w-100">
