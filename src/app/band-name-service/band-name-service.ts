@@ -51,6 +51,6 @@ export class BandNameService {
     const dbList = scanResult.Items as BandNameEntry[];
     return dbList
       .filter((entry, index) => index === dbList.indexOf(dbList
-        .find(dbListItem => dbListItem.name === entry.name)));
+        .find(dbListItem => dbListItem.name.toLowerCase() === entry.name.toLowerCase())));
   }
 }
