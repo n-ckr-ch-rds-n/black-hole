@@ -1,8 +1,9 @@
 <div class="back-drop" [style.background-color]="rgbString">
   <ng-container *ngIf="bandNamePromise | async as bandNames">
-    <!--<app-lister [bandNames]="bandNames"></app-lister>-->
-    <ng-container *ngFor="let name of (bandNames | leagueSort)">
-      <p>{{name.index}} {{name.name}} {{name.rating}}</p>
-    </ng-container>
+    <mat-list>
+      <ng-container *ngFor="let name of (bandNames | leagueSort)">
+        <mat-list-item>{{name.name}}</mat-list-item>
+      </ng-container>
+    </mat-list>
   </ng-container>
 </div>
