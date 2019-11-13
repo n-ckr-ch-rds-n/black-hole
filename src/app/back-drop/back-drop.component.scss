@@ -11,4 +11,7 @@
   font-family: 'Metal Macabre';
   font-size: 20px;
   color: yellow;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
