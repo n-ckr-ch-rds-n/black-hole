@@ -46,22 +46,32 @@ export class ListerComponent implements OnInit {
   }
 
   async recordVote(): Promise<void> {
-    for (const name of this.ratableNames) {
-      const dbEntry = await this.bandNameService.getBandNameById(name.id);
-      const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
-      await this.bandNameService.updateEntryWithRating(dbEntry.id, rating);
+    try {
+      for (const name of this.ratableNames) {
+        const dbEntry = await this.bandNameService.getBandNameById(name.id);
+        const rating = dbEntry.rating ? dbEntry.rating + name.rating : name.rating;
+        await this.bandNameService.updateEntryWithRating(dbEntry.id, rating);
+      }
+    } catch (err) {
+      this.snackBar.open(`${err.message}`, "Ok");
     }
+
   }
 
   async updateVoter(): Promise<void> {
-    await this.voterService.updateVoter(this.ratableNames);
+    try {
+      await this.voterService.updateVoter(this.ratableNames);
+    } catch (err) {
+      this.snackBar.open(`${err.message}`, "Ok");
+    }
   }
 
   async vote() {
     this.saving = true;
     if (this.voterService.user.name === "Admin") {
-      await sleep(5000);
-      this.snackBar.open(`Apols you can't vote, ${this.voterService.user.name}`, "Ok");
+      // await sleep(5000);
+      await this.updateVoter();
+      this.snackBar.open(`Your voter record has been updated, ${this.voterService.user.name}`, "Ok");
     } else if (this.voterService.user.voted) {
       this.snackBar.open(`Apols ${this.voterService.user.name}, you have already voted`, "Ok");
     } else {
