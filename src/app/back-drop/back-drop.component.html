@@ -1,4 +1,4 @@
-<div class="back-drop" [style.background-color]="rgbString">
+<div [style.background-color]="rgbString">
   <ng-container *ngIf="bandNamePromise | async as bandNames">
     <mat-list>
       <ng-container *ngFor="let name of (bandNames | leagueSort)">

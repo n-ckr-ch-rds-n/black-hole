@@ -7,7 +7,9 @@ import {BandNameEntry} from "./band.name.entry";
 export class LeagueSortPipe implements PipeTransform {
 
   transform(bandNames: BandNameEntry[]): BandNameEntry[] {
-    return bandNames.sort((a, b) => a.rating - b.rating);
+    const sorted = bandNames.sort((a, b) => b.rating - a.rating);
+    console.log(sorted);
+    return bandNames.sort((a, b) => b.rating - a.rating);
   }
 
 }
