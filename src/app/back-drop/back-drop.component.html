@@ -2,7 +2,9 @@
   <ng-container *ngIf="bandNamePromise | async as bandNames">
     <mat-list>
       <ng-container *ngFor="let name of (bandNames | leagueSort)">
-        <mat-list-item class="band-name" matTooltip="Rating: {{name.rating}}">{{name.index}}. {{name.name}}</mat-list-item>
+        <mat-list-item class="band-name" >
+          <span>{{name.index}}. {{name.name}}</span>
+        </mat-list-item>
       </ng-container>
     </mat-list>
   </ng-container>
