@@ -30,7 +30,7 @@
     "@angular/router": "~8.2.13",
     "angular-bootstrap-md": "^8.5.0",
     "aws-sdk": "^2.548.0",
-    "chart.js": "^2.5.0",
+    "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
